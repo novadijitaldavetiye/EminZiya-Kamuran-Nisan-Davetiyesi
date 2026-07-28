@@ -1,7 +1,7 @@
 import "./Gallery.css";
 
 export default function Gallery() {
-  const galleryBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery.webp)`;
+  const galleryBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery1.jpg)`;
   const goToPhotos = () => {
     document.getElementById("gallery-photos")?.scrollIntoView({
       behavior: "smooth",
