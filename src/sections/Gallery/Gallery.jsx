@@ -1,6 +1,7 @@
 import "./Gallery.css";
 
 export default function Gallery() {
+  const galleryBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery.webp)`;
   const goToPhotos = () => {
     document.getElementById("gallery-photos")?.scrollIntoView({
       behavior: "smooth",
@@ -18,7 +19,11 @@ export default function Gallery() {
   return (
     <>
       {/* GALERİ GİRİŞİ */}
-      <section id="gallery" className="gallery-section">
+      <section
+        id="gallery"
+        className="gallery-section"
+        style={{ "--gallery-background": galleryBackground }}
+      >
         <div className="gallery-overlay" />
 
         <div className="gallery-content">
@@ -39,7 +44,11 @@ export default function Gallery() {
       </section>
 
       {/* FOTOĞRAFLAR */}
-      <section id="gallery-photos" className="gallery-photos">
+      <section
+        id="gallery-photos"
+        className="gallery-photos"
+        style={{ "--gallery-background": galleryBackground }}
+      >
         <div className="gallery-photos-content">
 
           <div className="gallery-grid">

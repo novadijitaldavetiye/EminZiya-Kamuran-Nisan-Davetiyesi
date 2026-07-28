@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 100svh;
   padding: 60px 18px 50px;
-  background-image: url("/images/backgrounds/gallery.webp");
+  background-image: var(--gallery-background);
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -135,7 +135,7 @@
   padding: 54px 18px 46px;
   background-image:
     linear-gradient(to bottom, rgba(39,24,10,.22), rgba(28,17,8,.5)),
-    url("/images/backgrounds/gallery.webp");
+    var(--gallery-background);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -233,4 +233,13 @@
 
 @media (prefers-reduced-motion: reduce) {
   .gallery-photo, .gallery-photo img { transition: none; }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .gallery-section, .gallery-photos {
+    min-height: 100svh;
+    min-height: 100dvh;
+    background-position: 50% top;
+    background-attachment: scroll;
+  }
 }

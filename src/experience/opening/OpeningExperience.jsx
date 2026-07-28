@@ -57,7 +57,12 @@ export default function OpeningExperience({ onComplete }) {
         preload="auto"
       />
 
-      <div className="engagement-bg" />
+      <div
+        className="engagement-bg"
+        style={{
+          backgroundImage: `url(${import.meta.env.BASE_URL}images/backgrounds/hero.webp)`,
+        }}
+      />
       <div className="engagement-atmosphere" />
 
       <div className="engagement-particles" aria-hidden="true">

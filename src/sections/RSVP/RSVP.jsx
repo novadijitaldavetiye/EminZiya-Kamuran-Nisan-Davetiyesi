@@ -28,7 +28,13 @@ export default function RSVP() {
   };
 
   return (
-    <section id="rsvp" className="rsvp-section">
+    <section
+      id="rsvp"
+      className="rsvp-section"
+      style={{
+        backgroundImage: `url(${import.meta.env.BASE_URL}images/backgrounds/rsvp.webp)`,
+      }}
+    >
       <div className="rsvp-overlay" />
 
       <div className="rsvp-content">

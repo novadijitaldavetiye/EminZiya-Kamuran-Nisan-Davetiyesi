@@ -296,3 +296,7 @@
     transition: none;
   }
 }
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .countdown-section { min-height: 100svh; min-height: 100dvh; background-position: 50% top; }
+}

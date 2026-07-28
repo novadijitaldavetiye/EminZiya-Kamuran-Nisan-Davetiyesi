@@ -9,7 +9,7 @@
 
   padding: 28px 14px;
 
-  background-image: url("/images/backgrounds/rsvp.webp");
+
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -531,4 +531,8 @@
   .rsvp-next p {
     transition: none;
   }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .rsvp-section { min-height: 100svh; min-height: 100dvh; background-position: 50% top; }
 }

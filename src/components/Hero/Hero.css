@@ -302,3 +302,8 @@
     letter-spacing: 4.4px;
   }
 }
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .premium-hero { min-height: 100svh; min-height: 100dvh; background-position: 50% top; }
+  .hero-bg-motion { inset: 0; transform: none; animation: none; background-position: 50% top; }
+}

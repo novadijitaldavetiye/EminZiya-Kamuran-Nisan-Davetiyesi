@@ -274,3 +274,8 @@
   .story-card .story-ornament { margin-block: 3px 4px; }
   .story-card > p:last-child { font-size: 8.5px; line-height: 1.22; }
 }
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .story-scene { height: 100svh; height: 100dvh; background-position: 50% top; }
+  .story-bg-motion { inset: 0; transform: none; background-position: 50% top; }
+}
