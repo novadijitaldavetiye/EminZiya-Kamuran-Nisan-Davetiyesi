@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap");
+
+@font-face {
+  font-family: "Anaconda Wildstyle";
+  src: url("../assets/fonts/AnacondaWildstyle_PERSONAL_USE_ONLY.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Blode Starkly";
+  src: url("../assets/fonts/Blodestarkly-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lovelace Script";
+  src: url("../assets/fonts/Lovelace-Script-Medium-trial.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+}

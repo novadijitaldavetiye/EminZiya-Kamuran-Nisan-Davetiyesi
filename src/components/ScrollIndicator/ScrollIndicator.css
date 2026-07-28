@@ -1,0 +1,12 @@
+.scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  z-index: 3;
+
+  transform: translateX(-50%);
+  color: var(--color-gold-light);
+  font-size: 22px;
+
+  animation: scrollFloat 1.8s ease-in-out infinite;
+}

@@ -1,0 +1,82 @@
+.scene-engine {
+  width: 100%;
+  min-height: 100vh;
+  background: #04060b;
+}
+
+.scene-frame {
+  position: relative;
+  min-height: 100svh;
+  opacity: 0;
+  transform: translate3d(0, 42px, 0) scale(0.985);
+  will-change: transform, opacity;
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: clip;
+}
+
+.scene-frame.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.scene-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, #04060b 0%, rgba(4, 6, 11, 0.82) 38%, transparent 100%);
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 950ms ease, transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scene-frame.is-visible::after {
+  opacity: 0;
+  transform: translate3d(0, -18%, 0);
+}
+
+.scene-engine {
+  animation: sceneEngineEnter 1.2s ease both;
+}
+
+@keyframes sceneEngineEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(1.02);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .scene-frame {
+    transform: translate3d(0, 22px, 0);
+    transition-duration: 650ms, 750ms;
+    contain: layout paint;
+  }
+
+  .scene-frame.is-visible { transform: translate3d(0, 0, 0); }
+
+  .scene-frame::after {
+    background: linear-gradient(180deg, #04060b, rgba(4, 6, 11, 0.35) 42%, transparent 72%);
+    transition-duration: 600ms, 750ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-engine, .scene-frame, .scene-frame::after {
+    animation: none;
+    transition: none;
+  }
+
+  .scene-frame { opacity: 1; transform: none; }
+  .scene-frame::after { display: none; }
+}

@@ -1,0 +1,72 @@
+.audio-button {
+  position: fixed;
+  top: max(18px, calc(env(safe-area-inset-top) + 8px));
+  right: max(18px, calc(env(safe-area-inset-right) + 12px));
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  color: #6f4b19;
+  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(235,208,157,.9));
+  border: 1px solid rgba(126, 86, 28, 0.72);
+  border-radius: 50%;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 7px 20px rgba(65,39,12,.28), inset 0 1px 2px rgba(255,255,255,.85), inset 0 -3px 7px rgba(142,97,33,.18);
+  font-family: Georgia, serif;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.audio-wave {
+  width: 20px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  filter: drop-shadow(0 1px 1px rgba(255,255,255,.7));
+}
+
+.audio-wave i {
+  width: 2px;
+  height: 5px;
+  border-radius: 99px;
+  background: currentColor;
+  transform-origin: center;
+}
+
+.audio-wave i:nth-child(2),
+.audio-wave i:nth-child(4) { height: 10px; }
+.audio-wave i:nth-child(3) { height: 15px; }
+
+.audio-button:hover {
+  transform: scale(1.05);
+  border-color: #8b6022;
+  box-shadow: 0 9px 24px rgba(65,39,12,.34), inset 0 1px 3px rgba(255,255,255,.95);
+}
+
+.audio-button.is-playing .audio-wave i { animation: sound-bar .72s ease-in-out infinite alternate; }
+.audio-button.is-playing .audio-wave i:nth-child(2) { animation-delay: -.46s; }
+.audio-button.is-playing .audio-wave i:nth-child(3) { animation-delay: -.2s; }
+.audio-button.is-playing .audio-wave i:nth-child(4) { animation-delay: -.58s; }
+.audio-button.is-playing .audio-wave i:nth-child(5) { animation-delay: -.32s; }
+
+@keyframes sound-bar {
+  from { transform: scaleY(.42); opacity: .65; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+.audio-button:focus-visible { outline: 1px solid #e8cf8a; outline-offset: 3px; }
+
+@media (min-width: 769px) {
+  .audio-button { right: calc((100vw - 390px) / 2 + 18px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audio-button, .audio-button.is-playing .audio-wave i { animation: none; transition: none; }
+}

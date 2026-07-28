@@ -1,0 +1,25 @@
+body {
+  background: #04060b;
+  color: white;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+}
+
+.luxury-invitation {
+  width: 100%;
+}
+
+/* Masaüstünde mobil davetiye önizleme hissi */
+@media (min-width: 769px) {
+  .luxury-invitation {
+    width: 390px;
+    max-width: 390px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: #01030a;
+    box-shadow: 0 0 90px rgba(0, 0, 0, 0.75);
+  }
+}

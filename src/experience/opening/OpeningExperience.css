@@ -1,0 +1,303 @@
+.engagement-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  isolation: isolate;
+  background: #3b2d20;
+  animation: engagement-scene-fade 7.5s linear both;
+}
+
+.engagement-bg {
+  position: absolute;
+  inset: -5%;
+  z-index: -4;
+  background: url("/images/backgrounds/hero.webp") center top / cover no-repeat;
+  filter: brightness(0.56) saturate(0.72) blur(1px);
+  transform: scale(1.08);
+  animation: engagement-bg-reveal 7.5s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.engagement-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(circle at 50% 31%, rgba(255, 226, 153, 0.18), transparent 22%),
+    linear-gradient(to bottom, rgba(30, 22, 15, 0.12), rgba(22, 16, 11, 0.54));
+}
+
+.engagement-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.engagement-particles i {
+  position: absolute;
+  left: var(--particle-x);
+  top: var(--particle-y);
+  width: var(--particle-size);
+  height: var(--particle-size);
+  border-radius: 50%;
+  background: #ffe9aa;
+  box-shadow: 0 0 9px rgba(255, 219, 132, 0.82);
+  opacity: 0;
+  animation: engagement-particle 3.2s ease-in-out var(--particle-delay) infinite;
+}
+
+.infinity-stage {
+  position: absolute;
+  left: 50%;
+  top: 32%;
+  width: min(72vw, 270px);
+  aspect-ratio: 5 / 3;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.82);
+  animation: infinity-stage-reveal 7.5s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.infinity-trace {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 8px rgba(238, 190, 79, 0.34));
+}
+
+.infinity-trace path {
+  fill: none;
+  stroke: url("#infinity-gold");
+  stroke: rgba(240, 198, 94, 0.35);
+  stroke-width: 0.8;
+  stroke-linecap: round;
+  stroke-dasharray: 7 10;
+  animation: infinity-trace-flow 2.4s linear infinite;
+}
+
+.infinity-dust {
+  position: absolute;
+  inset: 0;
+}
+
+.infinity-dust i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--infinity-size);
+  height: var(--infinity-size);
+  border-radius: 50%;
+  background: #ffe39a;
+  box-shadow:
+    0 0 4px #fff2c0,
+    0 0 10px rgba(238, 181, 61, 0.88);
+  offset-path: path("M27 81 C54 27 97 27 135 81 C173 135 216 135 243 81 C216 27 173 27 135 81 C97 135 54 135 27 81");
+  offset-rotate: 0deg;
+  animation: infinity-particle-run 3s linear var(--infinity-delay) infinite;
+}
+
+.infinity-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff4c8;
+  box-shadow: 0 0 9px #fff0b5, 0 0 24px rgba(237, 181, 62, 0.88);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  animation: infinity-core-pulse 7.5s ease both;
+}
+
+.ring-scene {
+  position: absolute;
+  left: 50%;
+  top: 32%;
+  width: min(78vw, 290px);
+  aspect-ratio: 3 / 2;
+  transform: translate(-50%, -50%);
+}
+
+.ring-halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 82%;
+  height: 74%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(242, 194, 86, 0.2), rgba(229, 177, 65, 0.07) 42%, transparent 72%);
+  filter: blur(15px);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+  animation: engagement-halo 7.5s ease both;
+}
+
+.engagement-rings {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(60vw, 225px);
+  aspect-ratio: 3 / 2;
+  opacity: 0;
+  transform: translate(-50%, -44%) scale(0.72) rotate(-2deg);
+  animation: engagement-rings-reveal 7.5s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.engagement-rings-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter:
+    drop-shadow(0 12px 14px rgba(20, 12, 5, 0.42))
+    drop-shadow(0 0 13px rgba(238, 190, 77, 0.25));
+}
+
+.ring-spark {
+  position: absolute;
+  left: 50%;
+  top: 14%;
+  width: 8px;
+  height: 8px;
+  background: #fff6cc;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  filter: drop-shadow(0 0 7px #ffe49a);
+  transform: translateX(-50%) scale(0);
+  animation: engagement-spark 7.5s ease both;
+}
+
+.engagement-message {
+  position: absolute;
+  left: 50%;
+  top: 61%;
+  display: grid;
+  justify-items: center;
+  width: min(88vw, 350px);
+  color: #fff2cc;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, -42%);
+  animation: engagement-message 7.5s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.engagement-message span {
+  color: #e7c979;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 4.6px;
+  line-height: 1;
+  text-shadow: 0 2px 9px rgba(26, 16, 7, 0.72);
+  text-transform: uppercase;
+}
+
+.engagement-message strong {
+  margin-top: 26px;
+  color: #fff3d3;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(31px, 8.7vw, 41px);
+  font-weight: 300;
+  letter-spacing: 0.7px;
+  line-height: 1.22;
+  text-shadow: 0 2px 8px rgba(28, 18, 9, 0.72), 0 9px 25px rgba(20, 12, 5, 0.48);
+}
+
+.engagement-exit {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: radial-gradient(circle at center, #fff0bd, #d8ac51 42%, transparent 72%);
+  opacity: 0;
+  transform: scale(0.15);
+  animation: engagement-exit 7.5s ease both;
+}
+
+@keyframes engagement-bg-reveal {
+  0% { opacity: 0; transform: scale(1.12); }
+  18%, 100% { opacity: 1; }
+  100% { transform: scale(1.03); }
+}
+
+@keyframes engagement-particle {
+  0%, 100% { opacity: 0; transform: translateY(10px) scale(0.6); }
+  45% { opacity: 0.8; transform: translateY(-8px) scale(1); }
+}
+
+@keyframes infinity-stage-reveal {
+  0%, 8% { opacity: 0; transform: translate(-50%, -50%) scale(0.82); filter: blur(5px); }
+  22%, 39% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: blur(0); }
+  48%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.12); filter: blur(3px); }
+}
+
+@keyframes infinity-trace-flow {
+  to { stroke-dashoffset: -34; }
+}
+
+@keyframes infinity-particle-run {
+  0% { offset-distance: 0%; opacity: 0.12; transform: scale(0.65); }
+  16%, 84% { opacity: 1; transform: scale(1); }
+  100% { offset-distance: 100%; opacity: 0.12; transform: scale(0.65); }
+}
+
+@keyframes infinity-core-pulse {
+  0%, 31% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+  39% { opacity: 1; transform: translate(-50%, -50%) scale(1.8); }
+  48%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(5); }
+}
+
+@keyframes engagement-halo {
+  0%, 43% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  55%, 84% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  96%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.18); }
+}
+
+@keyframes engagement-rings-reveal {
+  0%, 43% { opacity: 0; transform: translate(-50%, -35%) scale(0.72) rotate(-4deg); filter: blur(6px); }
+  56% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); filter: blur(0); }
+  56%, 84% { opacity: 1; }
+  72% { transform: translate(-50%, -54%) scale(1.025) rotate(0.6deg); }
+  96%, 100% { opacity: 0; transform: translate(-50%, -59%) scale(1.06) rotate(0); }
+}
+
+@keyframes engagement-spark {
+  0%, 51% { opacity: 0; transform: translateX(-50%) scale(0); }
+  58% { opacity: 1; transform: translateX(-50%) scale(1.5); }
+  66%, 84% { opacity: 0.82; transform: translateX(-50%) scale(0.72); }
+  96%, 100% { opacity: 0; }
+}
+
+@keyframes engagement-message {
+  0%, 57% { opacity: 0; transform: translate(-50%, -34%); filter: blur(7px); }
+  69%, 86% { opacity: 1; transform: translate(-50%, -50%); filter: blur(0); }
+  96%, 100% { opacity: 0; transform: translate(-50%, -58%); }
+}
+
+@keyframes engagement-exit {
+  0%, 89% { opacity: 0; transform: scale(0.15); }
+  97% { opacity: 0.88; transform: scale(2.2); }
+  100% { opacity: 0; transform: scale(2.8); }
+}
+
+@keyframes engagement-scene-fade {
+  0%, 98% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (min-width: 769px) {
+  .engagement-intro {
+    left: 50%;
+    right: auto;
+    width: 390px;
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engagement-particles i {
+    animation: none;
+    opacity: 0.35;
+  }
+}

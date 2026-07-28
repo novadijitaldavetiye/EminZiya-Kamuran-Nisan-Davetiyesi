@@ -1,0 +1,59 @@
+:root {
+
+  /* ========= COLORS ========= */
+
+  --color-background: #04060B;
+  --color-surface: rgba(10,12,18,.45);
+
+  --color-white: #ffffff;
+
+  --color-gold: #D4AF37;
+  --color-gold-light: #F8E9A5;
+  --color-gold-dark: #8A691A;
+
+  --color-border: rgba(255,255,255,.12);
+
+  --color-text: #F5F5F5;
+  --color-text-secondary: rgba(255,255,255,.72);
+
+
+
+  /* ========= SHADOW ========= */
+
+  --shadow-small:
+      0 8px 20px rgba(0,0,0,.18);
+
+  --shadow-medium:
+      0 20px 45px rgba(0,0,0,.35);
+
+  --shadow-large:
+      0 40px 120px rgba(0,0,0,.55);
+
+
+
+  /* ========= RADIUS ========= */
+
+  --radius-small:12px;
+  --radius-medium:20px;
+  --radius-large:32px;
+  --radius-pill:999px;
+
+
+
+  /* ========= SPACING ========= */
+
+  --space-xs:8px;
+  --space-sm:16px;
+  --space-md:24px;
+  --space-lg:40px;
+  --space-xl:64px;
+
+
+
+  /* ========= TRANSITION ========= */
+
+  --transition-fast:.25s ease;
+  --transition-normal:.45s ease;
+  --transition-slow:.8s ease;
+
+}

@@ -1,0 +1,11 @@
+button{
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    transition:.3s;
+
+}
