@@ -1,7 +1,7 @@
 import "./Gallery.css";
 
 export default function Gallery() {
-  const galleryBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery1.jpg)`;
+  const galleryBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery-mobile-v2.png)`;
   const goToPhotos = () => {
     document.getElementById("gallery-photos")?.scrollIntoView({
       behavior: "smooth",
