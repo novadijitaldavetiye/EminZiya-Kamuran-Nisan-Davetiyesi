@@ -1,8 +1,8 @@
 import "./Gallery.css";
 
 export default function Gallery() {
-  const galleryBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery.webp)`;
-  const galleryPhotosBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery1.jpg)`;
+  const galleryBackground = `${import.meta.env.BASE_URL}images/backgrounds/gallery.webp`;
+  const galleryPhotosBackground = `${import.meta.env.BASE_URL}images/backgrounds/gallery1.jpg`;
   const goToPhotos = () => {
     document.getElementById("gallery-photos")?.scrollIntoView({
       behavior: "smooth",
@@ -23,7 +23,7 @@ export default function Gallery() {
       <section
         id="gallery"
         className="gallery-section"
-        style={{ "--gallery-background": galleryBackground }}
+        style={{ backgroundImage: `url(${galleryBackground})` }}
       >
         <div className="gallery-overlay" />
 
@@ -48,7 +48,9 @@ export default function Gallery() {
       <section
         id="gallery-photos"
         className="gallery-photos"
-        style={{ "--gallery-background": galleryPhotosBackground }}
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(12, 8, 4, .20), rgba(12, 8, 4, .42)), url(${galleryPhotosBackground})`,
+        }}
       >
         <div className="gallery-photos-content">
 
