@@ -1,7 +1,8 @@
 import "./Gallery.css";
 
 export default function Gallery() {
-  const galleryBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery-mobile-v2.png)`;
+  const galleryBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery.webp)`;
+  const galleryPhotosBackground = `url(${import.meta.env.BASE_URL}images/backgrounds/gallery1.jpg)`;
   const goToPhotos = () => {
     document.getElementById("gallery-photos")?.scrollIntoView({
       behavior: "smooth",
@@ -47,7 +48,7 @@ export default function Gallery() {
       <section
         id="gallery-photos"
         className="gallery-photos"
-        style={{ "--gallery-background": galleryBackground }}
+        style={{ "--gallery-background": galleryPhotosBackground }}
       >
         <div className="gallery-photos-content">
 
