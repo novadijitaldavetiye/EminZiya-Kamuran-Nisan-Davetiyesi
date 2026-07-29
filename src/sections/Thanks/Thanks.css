@@ -541,12 +541,12 @@
   width: calc(100% - 34px);
   max-width: 392px;
   padding: 27px 20px 25px;
-  border: 1px solid rgba(239, 218, 164, .32);
-  border-radius: 34px;
-  background: linear-gradient(155deg, rgba(61, 50, 39, .24), rgba(29, 24, 20, .42));
-  box-shadow: 0 24px 65px rgba(12, 9, 7, .34), inset 0 1px 0 rgba(255, 246, 218, .16);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   transform: none;
 }
 
