@@ -141,7 +141,7 @@
 .thanks-eyebrow {
   margin: 0 0 6px;
   color: rgba(232, 207, 138, 0.78);
-  font-size: 7px;
+  font-size: 7.5px;
   letter-spacing: 4px;
   text-transform: uppercase;
   opacity: 0;
@@ -260,7 +260,7 @@
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(15px, 3.5vw, 18px);
   font-weight: 400;
-  line-height: 1.72;
+  line-height: 1.68;
   opacity: 0;
   transform: translateY(10px);
 }
@@ -538,7 +538,15 @@
 }
 
 .thanks-content {
-  max-width: 390px;
+  width: calc(100% - 34px);
+  max-width: 392px;
+  padding: 27px 20px 25px;
+  border: 1px solid rgba(239, 218, 164, .32);
+  border-radius: 34px;
+  background: linear-gradient(155deg, rgba(61, 50, 39, .24), rgba(29, 24, 20, .42));
+  box-shadow: 0 24px 65px rgba(12, 9, 7, .34), inset 0 1px 0 rgba(255, 246, 218, .16);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   transform: none;
 }
 
@@ -559,14 +567,14 @@
 .thanks-eyebrow {
   margin-bottom: 4px;
   color: rgba(224, 199, 134, .88);
-  font-size: 7px;
+  font-size: 7.5px;
   font-weight: 600;
   letter-spacing: 4.6px;
 }
 
 .thanks-heading {
-  margin-top: 4px;
-  font-size: clamp(53px, 13.5vw, 66px);
+  margin-top: 18px;
+  font-size: clamp(49px, 12.5vw, 60px);
   line-height: 1.03;
   background: linear-gradient(180deg, #fff7df 8%, #f0dca5 52%, #cda752 100%);
   background-clip: text;
@@ -594,19 +602,19 @@
 }
 
 .thanks-text {
-  max-width: 355px;
-  color: rgba(249, 244, 230, .91);
+  max-width: 326px;
+  color: rgba(255, 250, 238, .95);
   font-family: "Inter", sans-serif;
-  font-size: clamp(11px, 2.8vw, 13px);
+  font-size: clamp(11px, 2.75vw, 12.5px);
   font-weight: 400;
-  line-height: 1.72;
+  line-height: 1.68;
   letter-spacing: .02em;
   text-shadow: 0 2px 5px rgba(15, 11, 8, .88), 0 8px 22px rgba(0, 0, 0, .42);
 }
 
 .thanks-signature-row {
   gap: 10px;
-  margin-top: 24px;
+  margin-top: 21px;
 }
 
 .thanks-signature-row > span {
@@ -620,29 +628,31 @@
 
 .thanks-signature {
   color: #dfc579;
-  font-family: "Lovelace Script", "Allura", "Segoe Script", cursive;
-  font-size: clamp(28px, 7.8vw, 36px);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(22px, 6vw, 27px);
   font-weight: 500;
-  line-height: 1.05;
+  line-height: 1.1;
+  letter-spacing: .025em;
+  white-space: nowrap;
   text-shadow: 0 2px 7px rgba(26, 17, 8, .78), 0 0 13px rgba(213, 174, 82, .14);
 }
 
 .thanks-back-button {
-  min-width: 116px;
-  height: 31px;
-  margin-top: 29px;
+  min-width: 138px;
+  height: 36px;
+  margin-top: 24px;
   border-color: rgba(222, 195, 128, .48);
   background: rgba(12, 10, 9, .27);
   color: #dfc98d;
-  font-size: 7px;
+  font-size: 7.5px;
   letter-spacing: 2.5px;
 }
 
 @media (max-width: 430px) {
-  .thanks-content { max-width: 360px; }
-  .thanks-heading { font-size: clamp(50px, 14vw, 61px); }
+  .thanks-content { width: calc(100% - 28px); max-width: 360px; padding: 24px 16px 23px; }
+  .thanks-heading { font-size: clamp(47px, 13vw, 56px); }
   .thanks-text { max-width: 330px; font-size: 11.5px; line-height: 1.65; }
-  .thanks-signature { font-size: clamp(27px, 8vw, 33px); }
+  .thanks-signature { font-size: clamp(21px, 5.8vw, 25px); }
 }
 
 @media (max-height: 700px) {
@@ -651,6 +661,25 @@
   .thanks-heart-divider { margin-block: 12px; }
   .thanks-text { font-size: 10.5px; line-height: 1.52; }
   .thanks-signature-row { margin-top: 16px; }
-  .thanks-signature { font-size: 27px; }
+  .thanks-signature { font-size: 21px; }
   .thanks-back-button { margin-top: 19px; }
+}
+
+
+
+
+
+.thanks-ring-image {
+  display: block;
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 12px;
+  border: 0;
+  border-radius: 0;
+  object-fit: cover;
+  box-shadow: none;
+  filter: none;
+}
+@media (max-height: 700px) {
+  .thanks-ring-image { width: 78px; height: 78px; margin-bottom: 8px; }
 }

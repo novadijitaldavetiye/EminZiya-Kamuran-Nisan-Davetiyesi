@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Thanks.css";
+import goldRings from "../../assets/images/gold-rings.png";
 
 const bg = (file) => `${import.meta.env.BASE_URL}images/backgrounds/${file}`;
 const snowflakes = Array.from({ length: 22 });
@@ -38,10 +39,7 @@ export default function Thanks() {
 
       <div className="thanks-content">
         <div className="thanks-title-group">
-          <div className="thanks-monogram" aria-hidden="true">
-            <span>Z</span><i>&amp;</i><span>K</span>
-          </div>
-
+          <img className="thanks-ring-image" src={goldRings} alt="Altın nişan yüzükleri" />
           <p className="thanks-eyebrow">Sonsuz Sevgiyle</p>
           <h2 className="thanks-heading">Teşekkürler</h2>
         </div>
@@ -60,7 +58,7 @@ export default function Thanks() {
 
         <div className="thanks-signature-row">
           <span aria-hidden="true" />
-          <p className="thanks-signature">Emin Ziya &amp; Kamuran</p>
+          <p className="thanks-signature">Emin Ziya &amp; Kâmuran</p>
           <span aria-hidden="true" />
         </div>
 
