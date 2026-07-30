@@ -1,11 +1,15 @@
 import { useState } from "react";
 import "./RSVP.css";
 
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
 export default function RSVP() {
   const [attendance, setAttendance] = useState("yes");
   const [fullName, setFullName] = useState("");
   const [guestCount, setGuestCount] = useState("2");
-  const whatsappNumber = "905443655732";
+  const [submitState, setSubmitState] = useState("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const goToThanks = () => {
     document.getElementById("thanks")?.scrollIntoView({
@@ -14,17 +18,48 @@ export default function RSVP() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response =
-      attendance === "yes"
-        ? `Katılacağız (${guestCount} kişi) 🎉`
-        : "Katılamayacağız";
-    const message = `Merhaba, Ahmet & Elif'in düğün davetiyesi için katılım yanıtımız:\n\nAd Soyad: ${fullName.trim()}\nYanıt: ${response}`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const trimmedName = fullName.trim();
+    if (!trimmedName || submitState === "loading") return;
 
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    if (!supabaseUrl || !supabaseKey) {
+      setSubmitState("error");
+      setSubmitMessage("Bağlantı ayarları eksik. Lütfen daha sonra tekrar deneyin.");
+      return;
+    }
+
+    setSubmitState("loading");
+    setSubmitMessage("");
+
+    try {
+      const response = await fetch(`${supabaseUrl}/rest/v1/rsvp_responses`, {
+        method: "POST",
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          full_name: trimmedName,
+          attendance: attendance === "yes",
+          guest_count: attendance === "yes" ? Number(guestCount) : 0,
+        }),
+      });
+
+      if (!response.ok) throw new Error("RSVP kaydı oluşturulamadı.");
+
+      setSubmitState("success");
+      setSubmitMessage("Yanıtınız başarıyla kaydedildi. Teşekkür ederiz!");
+      setFullName("");
+      setAttendance("yes");
+      setGuestCount("2");
+    } catch {
+      setSubmitState("error");
+      setSubmitMessage("Yanıt gönderilemedi. Lütfen bağlantınızı kontrol edip tekrar deneyin.");
+    }
   };
 
   return (
@@ -61,6 +96,8 @@ export default function RSVP() {
                 onChange={(event) => setFullName(event.target.value)}
                 placeholder="Adınız ve soyadınız"
                 autoComplete="name"
+                maxLength={100}
+                disabled={submitState === "loading"}
                 required
               />
             </label>
@@ -70,7 +107,7 @@ export default function RSVP() {
               <select
                 value={guestCount}
                 onChange={(event) => setGuestCount(event.target.value)}
-                disabled={attendance === "no"}
+                disabled={attendance === "no" || submitState === "loading"}
                 aria-label="Katılacak kişi sayısı"
               >
                 {Array.from({ length: 10 }, (_, index) => index + 1).map((count) => (
@@ -89,6 +126,7 @@ export default function RSVP() {
             type="button"
             className={`rsvp-option ${attendance === "yes" ? "active" : ""}`}
             onClick={() => setAttendance("yes")}
+            disabled={submitState === "loading"}
           >
             <div className="rsvp-icon" aria-hidden="true">✓</div>
             <div className="rsvp-info">
@@ -101,6 +139,7 @@ export default function RSVP() {
             type="button"
             className={`rsvp-option ${attendance === "no" ? "active" : ""}`}
             onClick={() => setAttendance("no")}
+            disabled={submitState === "loading"}
           >
             <div className="rsvp-icon" aria-hidden="true">×</div>
             <div className="rsvp-info">
@@ -109,9 +148,15 @@ export default function RSVP() {
             </div>
           </button>
 
-          <button type="submit" className="rsvp-send">
-            Yanıtımı Gönder
+          <button type="submit" className="rsvp-send" disabled={submitState === "loading"}>
+            {submitState === "loading" ? "Gönderiliyor..." : "Yanıtımı Gönder"}
           </button>
+
+          {submitMessage && (
+            <p className={`rsvp-status ${submitState}`} role="status" aria-live="polite">
+              {submitMessage}
+            </p>
+          )}
         </form>
 
         <div

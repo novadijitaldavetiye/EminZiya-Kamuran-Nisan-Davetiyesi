@@ -536,3 +536,23 @@
 @media (max-width: 768px) and (orientation: portrait) {
   .rsvp-section { min-height: 100svh; min-height: 100dvh; background-position: 50% top; }
 }
+.rsvp-send:disabled,
+.rsvp-option:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.rsvp-status {
+  margin: 12px auto 0;
+  max-width: 270px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.rsvp-status.success {
+  color: #dff2c7;
+}
+
+.rsvp-status.error {
+  color: #ffc4c4;
+}
