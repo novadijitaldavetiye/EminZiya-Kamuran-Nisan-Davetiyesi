@@ -48,6 +48,19 @@ export default function Hero({ onOpenInvitation }) {
           </p>
         </div>
 
+        <div className="hero-invitation-callout">
+          <div className="hero-callout-ornament" aria-hidden="true">
+            <span />
+            <i>♡</i>
+            <span />
+          </div>
+          <p>
+            <span aria-hidden="true">❧</span>
+            Nişanımıza Davetlisiniz
+            <span aria-hidden="true">❧</span>
+          </p>
+        </div>
+
         <button className="hero-button" onClick={goToStory}>
           Davetiyeyi Aç
         </button>
