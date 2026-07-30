@@ -24,10 +24,19 @@ export default function Hero({ onOpenInvitation }) {
       <div className="hero-content">
         <span className="hero-mark">✦</span>
 
-        <h1>
-          <span>Emin Ziya</span>
-          <strong>&</strong>
-          <span>Kâmuran</span>
+        <h1 className="hero-names" aria-label="Emin Ziya ve Kâmuran">
+          <span className="hero-name hero-name--emin" aria-hidden="true">
+            <i className="hero-initial">E</i>
+            <span className="hero-name-rest">min</span>
+            <span className="hero-name-space"> </span>
+            <span className="hero-capital">Z</span>
+            <span className="hero-name-rest">iya</span>
+          </span>
+          <strong className="hero-ampersand" aria-hidden="true">&amp;</strong>
+          <span className="hero-name hero-name--kamuran" aria-hidden="true">
+            <i className="hero-initial">K</i>
+            <span className="hero-name-rest">âmuran</span>
+          </span>
         </h1>
 
         <div className="hero-name-divider" aria-hidden="true" />
