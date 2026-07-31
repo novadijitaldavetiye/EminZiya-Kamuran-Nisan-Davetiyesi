@@ -66,6 +66,13 @@ export default function Thanks() {
           <span aria-hidden="true">↑</span>
           Başa Dön
         </button>
+
+        <img
+          className="thanks-floral-footer"
+          src={`${import.meta.env.BASE_URL}images/decor/thanks-ivory-blue-roses.png`}
+          alt=""
+          aria-hidden="true"
+        />
       </div>
     </section>
   );
