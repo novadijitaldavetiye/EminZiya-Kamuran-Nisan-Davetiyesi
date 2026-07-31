@@ -4,6 +4,10 @@ import "./AdminDashboard.css";
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 const sessionKey = "rsvp_admin_session";
+const guestPhotoBucket = "guest-photos";
+
+const guestPhotoUrl = (path) =>
+  `${supabaseUrl}/storage/v1/object/public/${guestPhotoBucket}/${encodeURIComponent(path).replaceAll("%2F", "/")}`;
 
 const apiHeaders = (accessToken) => ({
   apikey: supabaseKey,
@@ -22,6 +26,9 @@ export default function AdminDashboard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [responses, setResponses] = useState([]);
+  const [guestPhotos, setGuestPhotos] = useState([]);
+  const [photoLoading, setPhotoLoading] = useState(Boolean(session));
+  const [photoMessage, setPhotoMessage] = useState("");
   const [loading, setLoading] = useState(Boolean(session));
   const [message, setMessage] = useState("");
 
@@ -51,8 +58,66 @@ export default function AdminDashboard() {
     }
   };
 
+  const loadGuestPhotos = async (activeSession = session) => {
+    if (!activeSession?.access_token) return;
+    setPhotoLoading(true);
+    setPhotoMessage("");
+
+    try {
+      const result = await fetch(
+        `${supabaseUrl}/rest/v1/guest_photos?select=id,guest_name,note,storage_path,status,created_at&order=created_at.desc`,
+        { headers: apiHeaders(activeSession.access_token) },
+      );
+      if (!result.ok) throw new Error("Misafir fotoğrafları alınamadı.");
+      setGuestPhotos(await result.json());
+    } catch (error) {
+      setPhotoMessage(error.message);
+    } finally {
+      setPhotoLoading(false);
+    }
+  };
+
+  const updatePhotoStatus = async (photo, status) => {
+    setPhotoMessage("");
+    try {
+      const result = await fetch(`${supabaseUrl}/rest/v1/guest_photos?id=eq.${photo.id}`, {
+        method: "PATCH",
+        headers: { ...apiHeaders(session.access_token), Prefer: "return=minimal" },
+        body: JSON.stringify({ status }),
+      });
+      if (!result.ok) throw new Error("Fotoğraf durumu güncellenemedi.");
+      setGuestPhotos((current) => current.map((item) => item.id === photo.id ? { ...item, status } : item));
+    } catch (error) {
+      setPhotoMessage(error.message);
+    }
+  };
+
+  const deleteGuestPhoto = async (photo) => {
+    if (!window.confirm(`${photo.guest_name} tarafından yüklenen fotoğraf kalıcı olarak silinsin mi?`)) return;
+    setPhotoMessage("");
+
+    try {
+      const storageDelete = await fetch(`${supabaseUrl}/storage/v1/object/${guestPhotoBucket}/${photo.storage_path}`, {
+        method: "DELETE",
+        headers: { apikey: supabaseKey, Authorization: `Bearer ${session.access_token}` },
+      });
+      if (!storageDelete.ok && storageDelete.status !== 404) throw new Error("Fotoğraf dosyası silinemedi.");
+
+      const recordDelete = await fetch(`${supabaseUrl}/rest/v1/guest_photos?id=eq.${photo.id}`, {
+        method: "DELETE",
+        headers: { ...apiHeaders(session.access_token), Prefer: "return=minimal" },
+      });
+      if (!recordDelete.ok) throw new Error("Fotoğraf kaydı silinemedi.");
+      setGuestPhotos((current) => current.filter((item) => item.id !== photo.id));
+    } catch (error) {
+      setPhotoMessage(error.message);
+    }
+  };
   useEffect(() => {
-    if (session) loadResponses(session);
+    if (session) {
+      loadResponses(session);
+      loadGuestPhotos(session);
+    }
   }, []);
 
   const totals = useMemo(() => {
@@ -82,7 +147,7 @@ export default function AdminDashboard() {
       localStorage.setItem(sessionKey, JSON.stringify(data));
       setSession(data);
       setPassword("");
-      await loadResponses(data);
+      await Promise.all([loadResponses(data), loadGuestPhotos(data)]);
     } catch (error) {
       setMessage(error.message);
       setLoading(false);
@@ -93,6 +158,8 @@ export default function AdminDashboard() {
     localStorage.removeItem(sessionKey);
     setSession(null);
     setResponses([]);
+    setGuestPhotos([]);
+    setPhotoMessage("");
     setMessage("");
   };
 
@@ -146,7 +213,7 @@ export default function AdminDashboard() {
           <h1>Katılım Sonuçları</h1>
         </div>
         <div className="admin-actions">
-          <button type="button" onClick={() => loadResponses()} disabled={loading}>Yenile</button>
+          <button type="button" onClick={() => { loadResponses(); loadGuestPhotos(); }} disabled={loading || photoLoading}>Yenile</button>
           <button type="button" onClick={handleLogout}>Çıkış</button>
         </div>
       </header>
@@ -183,6 +250,55 @@ export default function AdminDashboard() {
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+      </section>
+
+      <section className="admin-list-card admin-photo-card">
+        <div className="admin-list-heading">
+          <div>
+            <h2>Misafir Fotoğrafları</h2>
+            <p className="admin-section-note">Onaylanan fotoğraflar davetiye galerisinde yayınlanır.</p>
+          </div>
+          <span className="admin-photo-count">{guestPhotos.filter((photo) => photo.status === "pending").length} bekliyor</span>
+        </div>
+        {photoMessage && <p className="admin-message error" role="alert">{photoMessage}</p>}
+        {photoLoading ? (
+          <p className="admin-empty">Fotoğraflar yükleniyor...</p>
+        ) : guestPhotos.length === 0 ? (
+          <p className="admin-empty">Henüz misafir fotoğrafı yüklenmedi.</p>
+        ) : (
+          <div className="admin-photo-grid">
+            {guestPhotos.map((photo) => (
+              <article className="admin-photo-item" key={photo.id}>
+                <img src={guestPhotoUrl(photo.storage_path)} alt={`${photo.guest_name} tarafından yüklenen fotoğraf`} loading="lazy" />
+                <div className="admin-photo-info">
+                  <div className="admin-photo-meta">
+                    <strong>{photo.guest_name}</strong>
+                    <span className={`admin-badge ${photo.status === "approved" ? "yes" : photo.status === "rejected" ? "no" : "pending"}`}>
+                      {photo.status === "approved" ? "Yayında" : photo.status === "rejected" ? "Reddedildi" : "Onay Bekliyor"}
+                    </span>
+                  </div>
+                  {photo.note && <p>{photo.note}</p>}
+                  <time>{new Date(photo.created_at).toLocaleString("tr-TR")}</time>
+                  <div className="admin-photo-actions">
+                    {photo.status === "approved" ? (
+                      <button type="button" onClick={() => updatePhotoStatus(photo, "pending")}>Yayından Kaldır</button>
+                    ) : (
+                      <button type="button" className="approve" onClick={() => updatePhotoStatus(photo, "approved")}>Onayla ve Yayınla</button>
+                    )}
+                    {photo.status === "pending" && (
+                      <button type="button" className="reject" onClick={() => updatePhotoStatus(photo, "rejected")}>Reddet</button>
+                    )}
+                    {photo.status === "rejected" && (
+                      <button type="button" onClick={() => updatePhotoStatus(photo, "pending")}>Tekrar İncele</button>
+                    )}
+                    <a href={guestPhotoUrl(photo.storage_path)} download target="_blank" rel="noreferrer">İndir</a>
+                    <button type="button" className="delete" onClick={() => deleteGuestPhoto(photo)}>Sil</button>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         )}
       </section>

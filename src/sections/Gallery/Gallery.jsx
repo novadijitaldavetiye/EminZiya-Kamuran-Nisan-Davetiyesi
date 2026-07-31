@@ -1,4 +1,5 @@
 import "./Gallery.css";
+import GuestPhotos from "./GuestPhotos";
 
 export default function Gallery() {
   const galleryBackground = `${import.meta.env.BASE_URL}images/backgrounds/gallery.webp`;
@@ -76,6 +77,7 @@ export default function Gallery() {
                 alt=""
               />
             </div>
+            <GuestPhotos />
 
             {/* SON FOTOĞRAFIN HEMEN ALTINDA */}
             <div className="gallery-next gallery-event-next" onClick={goToEvent}>
