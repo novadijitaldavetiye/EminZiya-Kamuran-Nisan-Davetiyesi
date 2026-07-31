@@ -3,16 +3,11 @@ import GuestPhotos from "./GuestPhotos";
 
 export default function Gallery() {
   const galleryBackground = `${import.meta.env.BASE_URL}images/backgrounds/gallery.webp`;
-  const galleryPhotosBackground = `${import.meta.env.BASE_URL}images/backgrounds/gallery1.jpg`;
-  const goToPhotos = () => {
-    document.getElementById("gallery-photos")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
+  const galleryPhotosBackground = `${import.meta.env.BASE_URL}images/backgrounds/gallery1.webp`;
+  const guestPhotosBackground = `${import.meta.env.BASE_URL}images/backgrounds/gallery1.webp`;
 
-  const goToEvent = () => {
-    document.getElementById("event")?.scrollIntoView({
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -30,15 +25,13 @@ export default function Gallery() {
 
         <div className="gallery-content">
           <p className="gallery-eyebrow">Anılarımız</p>
-
           <h2>Galeri</h2>
-
           <p className="gallery-text">
             Birlikte biriktirdiğimiz en özel
             anlardan küçük bir seçki.
           </p>
 
-          <div className="gallery-next" onClick={goToPhotos}>
+          <div className="gallery-next" onClick={() => scrollTo("gallery-photos")}>
             <div className="gallery-line" />
             <p>Fotoğraflara Geç</p>
           </div>
@@ -54,39 +47,41 @@ export default function Gallery() {
         }}
       >
         <div className="gallery-photos-content">
-
           <div className="gallery-grid">
-
             <div className="gallery-photo">
-              <img
-                src={`${import.meta.env.BASE_URL}images/gallery/photo1.jpeg`}
-                alt=""
-              />
+              <img src={`${import.meta.env.BASE_URL}images/gallery/photo1.jpeg`} alt="" />
             </div>
 
             <div className="gallery-photo">
-              <img
-                src={`${import.meta.env.BASE_URL}images/gallery/photo2.jpeg`}
-                alt=""
-              />
+              <img src={`${import.meta.env.BASE_URL}images/gallery/photo2.jpeg`} alt="" />
             </div>
 
             <div className="gallery-photo">
-              <img
-                src={`${import.meta.env.BASE_URL}images/gallery/photo3.jpeg`}
-                alt=""
-              />
+              <img src={`${import.meta.env.BASE_URL}images/gallery/photo3.jpeg`} alt="" />
             </div>
-            <GuestPhotos />
 
-            {/* SON FOTOĞRAFIN HEMEN ALTINDA */}
-            <div className="gallery-next gallery-event-next" onClick={goToEvent}>
+            <div className="gallery-next gallery-event-next" onClick={() => scrollTo("guest-photo-upload")}>
               <div className="gallery-line" />
-              <p>NİŞAN BİLGİLERİNİ GÖR</p>
+              <p>ANINI PAYLAŞ</p>
             </div>
-
           </div>
+        </div>
+      </section>
 
+      {/* MİSAFİR FOTOĞRAF PAYLAŞIMI */}
+      <section
+        id="guest-photo-upload"
+        className="guest-photo-section"
+        style={{ backgroundImage: `url(${guestPhotosBackground})` }}
+      >
+        <div className="guest-photo-section-overlay" />
+        <div className="guest-photo-section-content">
+          <GuestPhotos />
+
+          <div className="gallery-next guest-event-next" onClick={() => scrollTo("event")}>
+            <div className="gallery-line" />
+            <p>NİŞAN BİLGİLERİNİ GÖR</p>
+          </div>
         </div>
       </section>
     </>

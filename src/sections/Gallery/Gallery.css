@@ -73,18 +73,25 @@
 }
 
 .gallery-grid .gallery-event-next {
-  margin-top: 4px;
-  gap: 4px;
+  margin-top: -8px;
+  gap: 5px;
+  transform: translateY(-10px);
 }
 
 .gallery-grid .gallery-event-next .gallery-line {
-  height: 14px;
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, #f0d483);
+  box-shadow: 0 0 8px rgba(227, 192, 101, .42);
 }
 
 .gallery-grid .gallery-event-next p {
-  font-size: 9px;
-  letter-spacing: 4.4px;
-  line-height: 1;
+  color: #f5dd94;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 4.2px;
+  line-height: 1.25;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, .98), 0 0 10px rgba(229, 192, 92, .28);
 }
 
 .gallery-line {
@@ -213,6 +220,15 @@
 }
 
 @media(max-width:430px) {
+  .gallery-grid .gallery-event-next {
+    margin-top: -14px;
+    transform: translateY(-14px);
+  }
+
+  .gallery-grid .gallery-event-next p {
+    font-size: 11px;
+    letter-spacing: 4px;
+  }
   .gallery-content h2 {
     font-size: 56px;
   }
@@ -246,3 +262,75 @@
       linear-gradient(to bottom, rgba(0, 0, 0, .05), rgba(0, 0, 0, .58));
   }
 }
+/* MİSAFİR FOTOĞRAF PAYLAŞIM SAYFASI */
+.guest-photo-section {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  padding: 58px 18px 46px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  isolation: isolate;
+}
+
+.guest-photo-section-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(225, 198, 126, .10), transparent 36%),
+    linear-gradient(to bottom, rgba(6, 5, 3, .56), rgba(8, 6, 4, .72), rgba(4, 3, 2, .88));
+  backdrop-filter: blur(2px);
+}
+
+.guest-photo-section-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.guest-event-next {
+  margin-top: 24px;
+  gap: 4px;
+}
+
+.guest-event-next .gallery-line {
+  height: 18px;
+}
+
+.guest-event-next p {
+  color: #f1d98f;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4.4px;
+  text-shadow: 0 2px 7px rgba(0, 0, 0, .95);
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .guest-photo-section {
+    min-height: 100svh;
+    min-height: 100dvh;
+    background-position: 50% top;
+    background-attachment: scroll;
+  }
+}
+
+/* Tüm galeri geçişlerinde okunabilirlik */
+.gallery-next:not(.gallery-event-next) p {
+  color: #f5dc91;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 4.2px;
+  line-height: 1.25;
+  text-shadow: 0 2px 6px rgba(0,0,0,.98), 0 0 10px rgba(230,193,96,.3);
+}
+.gallery-next:not(.gallery-event-next) .gallery-line { box-shadow: 0 0 8px rgba(230,193,96,.38); }

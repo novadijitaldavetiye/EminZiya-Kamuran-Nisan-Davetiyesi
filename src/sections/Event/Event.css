@@ -280,3 +280,13 @@
 @media (max-width: 768px) and (orientation: portrait) {
   .event-section { min-height: 100svh; min-height: 100dvh; background-position: 50% top; }
 }
+/* Mobil geçiş okunabilirliği */
+.event-next p {
+  color: #f5dc91;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 4.2px;
+  line-height: 1.25;
+  text-shadow: 0 2px 6px rgba(0,0,0,.98), 0 0 10px rgba(230,193,96,.3);
+}
+.event-next .event-line { box-shadow: 0 0 8px rgba(230,193,96,.38); }

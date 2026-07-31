@@ -30,7 +30,7 @@ export default function Story() {
       <div className="story-content">
         <header className="story-heading">
           <p className="story-eyebrow">Nişanımız</p>
-          <h2>Bir Sözle<br />Başlayan<br />Yolculuk</h2>
+          <h2>Bir Ömre<br />İlk Adım</h2>
           <StoryDivider />
           <p className="story-intro">
             Bugün, sevgimizi ailelerimizin ve sevdiklerimizin huzurunda bir sözle

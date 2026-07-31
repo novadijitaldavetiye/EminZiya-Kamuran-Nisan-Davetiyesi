@@ -279,3 +279,13 @@
   .story-scene { height: 100svh; height: 100dvh; background-position: 50% top; }
   .story-bg-motion { inset: 0; transform: none; background-position: 50% top; }
 }
+/* Mobil geçiş okunabilirliği */
+.story-gallery-button > span:last-child {
+  color: #614315;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4.1px;
+  line-height: 1.25;
+  text-shadow: 0 1px 0 rgba(255,255,255,.72), 0 2px 5px rgba(38,25,8,.34);
+}
+.story-gallery-line { background: linear-gradient(to bottom, transparent, #76531b); box-shadow: 0 0 6px rgba(255,255,255,.42); }
