@@ -156,3 +156,95 @@
   .guest-upload-card { padding: 19px 14px; }
   .guest-photos-heading h3 { font-size: 36px; }
 }
+/* Tek mobil ekrana sığan form ölçüleri */
+@media (max-width: 430px) {
+  .guest-photos-heading > p:first-child {
+    margin-bottom: 5px;
+    font-size: 9px;
+  }
+
+  .guest-photos-heading h3 {
+    font-size: 36px;
+  }
+
+  .guest-photos-heading > span {
+    margin: 10px auto;
+  }
+
+  .guest-photos-lead {
+    max-width: 310px;
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .guest-approved-gallery {
+    margin-top: 14px;
+  }
+
+  .guest-upload-card {
+    gap: 10px;
+    margin-top: 14px;
+    padding: 15px 16px;
+    border-radius: 21px;
+  }
+
+  .guest-upload-card > label:not(.guest-file-picker):not(.guest-consent) {
+    gap: 5px;
+  }
+
+  .guest-upload-card label > span {
+    font-size: 10px;
+  }
+
+  .guest-upload-card input[type="text"] {
+    height: 39px;
+    padding-inline: 12px;
+  }
+
+  .guest-upload-card textarea {
+    min-height: 55px;
+    height: 55px;
+    padding: 10px 12px;
+  }
+
+  .guest-file-picker {
+    gap: 3px;
+    padding: 11px 10px;
+  }
+
+  .guest-file-picker .guest-file-icon {
+    font-size: 23px;
+  }
+
+  .guest-file-picker strong {
+    font-size: 10px;
+  }
+
+  .guest-file-picker small {
+    font-size: 8.5px;
+  }
+
+  .guest-consent {
+    gap: 8px;
+  }
+
+  .guest-consent span {
+    font-size: 8.5px !important;
+    line-height: 1.35;
+  }
+
+  .guest-upload-card button {
+    min-height: 38px;
+    font-size: 8.5px;
+  }
+}
+
+@media (max-width: 430px) and (max-height: 760px) {
+  .guest-photos-heading h3 { font-size: 32px; }
+  .guest-photos-heading > span { margin-block: 7px; }
+  .guest-photos-lead { font-size: 10.5px; line-height: 1.4; }
+  .guest-upload-card { gap: 8px; margin-top: 10px; padding-block: 12px; }
+  .guest-upload-card textarea { min-height: 46px; height: 46px; }
+  .guest-file-picker { padding-block: 8px; }
+  .guest-upload-card button { min-height: 35px; }
+}
