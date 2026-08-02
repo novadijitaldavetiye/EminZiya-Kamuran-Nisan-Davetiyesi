@@ -1,81 +1,112 @@
 import "./Story.css";
+import GuestPhotos from "../../sections/Gallery/GuestPhotos";
 
 const bg = (file) => `${import.meta.env.BASE_URL}images/backgrounds/${file}`;
+const photo = (file) => `${import.meta.env.BASE_URL}images/gallery/${file}`;
 
 const StoryDivider = () => (
   <div className="story-ornament" aria-hidden="true">
     <span />
-    <i>✦</i>
+    <i>♥</i>
     <span />
   </div>
 );
 
+const storyCards = [
+  {
+    icon: "❀",
+    kicker: "İlk Adım",
+    title: "Aynı Hayale",
+    text: "En güzel hikâyemizin başlangıcı.",
+    image: "photo1.jpeg",
+    imageAlt: "Kamuran ve Emin Ziya'nın birlikte bir anısı",
+  },
+  {
+    icon: "◎",
+    kicker: "Bir Söz",
+    title: "Sevgiyle",
+    text: "Sevgimizi anlamlı bir sözle taçlandırıyoruz.",
+    image: "photo2.jpeg",
+    imageAlt: "Kamuran ve Emin Ziya'nın özel bir anısı",
+    reverse: true,
+  },
+  {
+    icon: "♡",
+    kicker: "Yeni Bir Sayfa",
+    title: "Birlikte",
+    text: "Bu mutluluğu sizlerle paylaşıyoruz.",
+    image: "photo3.jpeg",
+    imageAlt: "Kamuran ve Emin Ziya'nın beraber bir anısı",
+  },
+];
+
 export default function Story() {
-  const goToGallery = () => {
-    document.getElementById("gallery")?.scrollIntoView({
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
 
   return (
-    <section
-      id="story"
-      className="story-scene"
-      style={{ backgroundImage: `url(${bg("story-light.png")} )` }}
-    >
-      <div className="story-bg-motion" />
-      <div className="story-overlay" />
+    <>
+      <section
+        id="story"
+        className="story-scene"
+        style={{ backgroundImage: `url(${bg("story-light.png")})` }}
+      >
+        <div className="story-bg-motion" />
+        <div className="story-overlay" />
 
-      <div className="story-content">
-        <header className="story-heading">
-          <p className="story-eyebrow">Nişanımız</p>
-          <h2>Bir Ömre<br />İlk Adım</h2>
-          <StoryDivider />
-          <p className="story-intro">
-            Bugün, sevgimizi ailelerimizin ve sevdiklerimizin huzurunda bir sözle
-            taçlandırıyoruz. Bu anlamlı başlangıcın mutluluğunu sizlerle paylaşmaktan
-            büyük heyecan duyuyoruz.
-          </p>
-        </header>
-
-        <div className="story-timeline">
-          <article className="story-card">
-            <p className="story-card-kicker">İlk Adım</p>
-            <h3>Aynı Hayale</h3>
+        <div className="story-content">
+          <header className="story-heading">
+            <h2>Hikâyemiz</h2>
             <StoryDivider />
-            <p>
-              Hayat yolculuğunda birlikte yürümeye karar verdiğimiz bu özel an,
-              en güzel hikâyemizin başlangıcı oldu.
-            </p>
-          </article>
+          </header>
 
-          <article className="story-card">
-            <p className="story-card-kicker">Bir Söz</p>
-            <h3>Sevgiyle</h3>
-            <StoryDivider />
-            <p>
-              Kalplerimizi birleştiren sevgimizi, ailelerimizin huzurunda verdiğimiz
-              anlamlı bir sözle taçlandırıyoruz.
-            </p>
-          </article>
+          <div className="story-timeline">
+            {storyCards.map((card) => (
+              <article
+                className={`story-card${card.reverse ? " story-card--reverse" : ""}`}
+                key={card.title}
+              >
+                <figure className="story-card-photo">
+                  <img src={photo(card.image)} alt={card.imageAlt} loading="lazy" />
+                </figure>
 
-          <article className="story-card">
-            <p className="story-card-kicker">Yeni Bir Sayfa</p>
-            <h3>Birlikte</h3>
-            <StoryDivider />
-            <p>
-              Mutluluğumuzu sizlerle paylaşmak, bu günü unutulmaz kılacak
-              en değerli hatıramız olacak.
-            </p>
-          </article>
+                <div className="story-card-copy">
+                  <span className="story-card-icon" aria-hidden="true">{card.icon}</span>
+                  <p className="story-card-kicker">{card.kicker}</p>
+                  <h3>{card.title}</h3>
+                  <StoryDivider />
+                  <p>{card.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <button type="button" className="story-next" onClick={() => scrollTo("guest-photo-upload")}>
+            <span className="story-next-line" aria-hidden="true" />
+            <span>Anını Paylaş</span>
+          </button>
         </div>
+      </section>
 
-        <button type="button" className="story-gallery-button" onClick={goToGallery}>
-          <span className="story-gallery-line" aria-hidden="true" />
-          <span>Anılarımıza Geç</span>
-        </button>
-      </div>
-    </section>
+      <section
+        id="guest-photo-upload"
+        className="story-guest-section"
+        style={{ backgroundImage: `url(${bg("story-light.png")})` }}
+      >
+        <div className="story-guest-overlay" />
+        <div className="story-guest-content">
+          <GuestPhotos />
+
+          <button type="button" className="story-guest-next" onClick={() => scrollTo("event")}>
+            <span className="story-guest-line" aria-hidden="true" />
+            <span>Nişan Bilgilerini Gör</span>
+          </button>
+        </div>
+      </section>
+    </>
   );
 }

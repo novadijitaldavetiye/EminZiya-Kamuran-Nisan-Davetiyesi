@@ -1,13 +1,41 @@
+import { useLayoutEffect, useState } from "react";
+
 import "./Hero.css";
 
 const bg = (file) => `${import.meta.env.BASE_URL}images/backgrounds/${file}`;
 
 export default function Hero({ onOpenInvitation }) {
+  const [invitationOpened, setInvitationOpened] = useState(false);
+
+  useLayoutEffect(() => {
+    if (invitationOpened) return undefined;
+
+    const root = document.documentElement;
+    const body = document.body;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    const previousOverscroll = body.style.overscrollBehavior;
+
+    root.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.overscrollBehavior = "none";
+
+    return () => {
+      root.style.overflow = previousRootOverflow;
+      body.style.overflow = previousBodyOverflow;
+      body.style.overscrollBehavior = previousOverscroll;
+    };
+  }, [invitationOpened]);
+
   const goToStory = () => {
+    setInvitationOpened(true);
     onOpenInvitation?.();
-    document.getElementById("story")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+
+    requestAnimationFrame(() => {
+      document.getElementById("story")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   };
 
@@ -24,18 +52,18 @@ export default function Hero({ onOpenInvitation }) {
       <div className="hero-content">
         <span className="hero-mark">✦</span>
 
-        <h1 className="hero-names" aria-label="Emin Ziya ve Kâmuran">
+        <h1 className="hero-names" aria-label="Kamuran ve Emin Ziya">
+          <span className="hero-name hero-name--kamuran" aria-hidden="true">
+            <i className="hero-initial">K</i>
+            <span className="hero-name-rest">âmuran</span>
+          </span>
+          <strong className="hero-ampersand" aria-hidden="true">&amp;</strong>
           <span className="hero-name hero-name--emin" aria-hidden="true">
             <i className="hero-initial">E</i>
             <span className="hero-name-rest">min</span>
             <span className="hero-name-space"> </span>
             <span className="hero-capital">Z</span>
             <span className="hero-name-rest">iya</span>
-          </span>
-          <strong className="hero-ampersand" aria-hidden="true">&amp;</strong>
-          <span className="hero-name hero-name--kamuran" aria-hidden="true">
-            <i className="hero-initial">K</i>
-            <span className="hero-name-rest">âmuran</span>
           </span>
         </h1>
 
@@ -55,15 +83,15 @@ export default function Hero({ onOpenInvitation }) {
             <span />
           </div>
           <p>
-            <span aria-hidden="true">❧</span>
             Nişanımıza Davetlisiniz
-            <span aria-hidden="true">❧</span>
           </p>
         </div>
 
-        <button className="hero-button" onClick={goToStory}>
-          Davetiyeyi Aç
-        </button>
+        <div className="hero-open-action">
+          <button className="hero-button" onClick={goToStory}>
+            <span>Davetiyeyi Aç</span>
+          </button>
+        </div>
       </div>
 
     </section>

@@ -181,23 +181,35 @@
 }
 
 .premium-intro__monogram {
-  display: flex;
+  display: grid;
+  grid-template-columns: 42px 24px 42px;
   align-items: center;
-  gap: 10px;
+  justify-items: center;
+  column-gap: 7px;
   color: #fff2ca;
   font-family: "Cormorant Garamond", serif;
   font-size: 39px;
   font-weight: 300;
-  letter-spacing: 3px;
   line-height: 1;
   text-shadow: 0 0 24px rgba(225, 179, 69, .32);
 }
 
+.premium-intro__monogram span {
+  display: block;
+  width: 42px;
+  text-align: center;
+}
+
 .premium-intro__monogram i {
+  display: grid;
+  width: 24px;
+  place-items: center;
   color: #d9b85f;
   font-family: "Lovelace Script", "Cormorant Garamond", serif;
-  font-size: 25px;
+  font-size: 22px;
+  font-style: normal;
   font-weight: 300;
+  line-height: 1;
 }
 
 .premium-intro__rule {

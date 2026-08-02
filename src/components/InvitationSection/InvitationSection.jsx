@@ -12,8 +12,8 @@ export default function InvitationSection({ section }) {
       {section.id === "intro" && (
         <img
           className="intro-monogram"
-          src={`${import.meta.env.BASE_URL}images/monogram-zk.png`}
-          alt="Z ve K çiçekli monogramı"
+          src={`${import.meta.env.BASE_URL}images/monogram-ke.png`}
+          alt="Kamuran ve Emin Ziya monogramı"
         />
       )}
 

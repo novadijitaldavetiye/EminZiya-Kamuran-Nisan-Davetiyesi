@@ -152,6 +152,7 @@
   line-height: 25px;
   margin: 0;
   justify-self: center;
+  transform: translateY(14px);
   text-shadow: 0 1px 0 rgba(255,248,218,.9), 0 2px 6px rgba(67,47,25,.6), 0 0 11px rgba(220,179,82,.28);
 }
 
@@ -269,63 +270,74 @@
   transform: scaleX(-1);
 }
 
+.hero-open-action {
+  display: grid;
+  justify-items: center;
+}
+
 .hero-button {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 170px;
-  height: 42px;
-  padding: 0 26px;
-  background: transparent;
-  border: none;
-  color: #efd69b;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 5px;
+  min-width: 164px;
+  height: 36px;
+  padding: 0 18px;
+  border: 1px solid rgba(235, 205, 137, .78);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(255, 247, 219, .13), rgba(117, 76, 29, .1)),
+    rgba(79, 52, 24, .15);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 245, 205, .18),
+    inset 0 1px 8px rgba(255, 244, 205, .16),
+    0 0 0 1px rgba(137, 86, 25, .38),
+    0 0 7px rgba(226, 182, 84, .46),
+    0 4px 14px rgba(49, 29, 11, .28);
+  color: #fff0c7;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3.2px;
   text-transform: uppercase;
   cursor: pointer;
-  text-shadow: 0 2px 7px rgba(24,17,10,.9), 0 0 12px rgba(213,174,82,.12);
+  text-shadow: 0 1px 1px rgba(68, 41, 13, .9), 0 0 9px rgba(255, 225, 153, .55);
   opacity: 0;
-  animation: heroFadeUp 1.1s ease forwards 1.8s;
-  transition: color .35s ease;
+  animation: heroFadeUp 1.1s ease forwards 1.8s, heroButtonGlow 2.4s ease-in-out 2.9s infinite;
+  transition: color .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
 }
 
-.hero-button::before,
-.hero-button::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 116px;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(230,194,105,.9),
-    transparent
-  );
-  transition: width .35s ease;
+.hero-button > span {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
 }
 
-.hero-button::before {
-  top: 3px;
+.hero-button:hover,
+.hero-button:focus-visible {
+  color: #fff8df;
+  border-color: rgba(255, 227, 158, 1);
+  background:
+    linear-gradient(180deg, rgba(255, 249, 226, .2), rgba(137, 88, 32, .14)),
+    rgba(87, 56, 24, .19);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 248, 218, .24),
+    inset 0 1px 10px rgba(255, 244, 205, .2),
+    0 0 0 1px rgba(137, 86, 25, .42),
+    0 0 15px rgba(244, 201, 103, .88),
+    0 7px 22px rgba(49, 29, 11, .36);
+  outline: none;
 }
-
-.hero-button::after {
-  bottom: 3px;
+@keyframes heroButtonGlow {
+  0%, 100% {
+    color: #efd69b;
+    text-shadow: 0 2px 7px rgba(24,17,10,.9), 0 0 12px rgba(213,174,82,.12);
+  }
+  50% {
+    color: #fff1c2;
+    text-shadow: 0 2px 7px rgba(24,17,10,.9), 0 0 19px rgba(236,197,101,.72);
+  }
 }
-
-.hero-button:hover {
-  color: #fff3cc;
-}
-
-.hero-button:hover::before,
-.hero-button:hover::after {
-  width: 154px;
-}
-
 @keyframes heroBreath {
   0%, 100% {
     transform: scale(1.03) translateY(0);
@@ -395,9 +407,9 @@
   }
 
   .hero-button {
-    min-width: 166px;
-    height: 40px;
-    font-size: 10px;
+    min-width: 160px;
+    height: 36px;
+    font-size: 9px;
     letter-spacing: 4.4px;
   }
 }

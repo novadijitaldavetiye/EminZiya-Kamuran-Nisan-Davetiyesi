@@ -127,8 +127,8 @@ export default function GuestPhotos() {
   return (
     <section className="guest-photos" aria-labelledby="guest-photos-title">
       <div className="guest-photos-heading">
-        <p>Bu Geceye Senin Gözünden</p>
-        <h3 id="guest-photos-title">Anını Paylaş</h3>
+        <p>HATIRALARIMIZA BİR İZ BIRAK</p>
+        <h3 id="guest-photos-title">Hatıranı Paylaş</h3>
         <span aria-hidden="true" />
         <p className="guest-photos-lead">
           Çektiğiniz en güzel kareleri bizimle paylaşın; bu özel gecenin anıları birlikte çoğalsın.

@@ -67,7 +67,7 @@ export default function OpeningExperience({ onComplete }) {
 
       <div className="premium-intro__copy">
         <div className="premium-intro__monogram">
-          <span>Z</span><i>&</i><span>K</span>
+          <span>K</span><i>&</i><span>Z</span>
         </div>
         <div className="premium-intro__rule" />
         <p>İki Kalp, Tek Bir Söz</p>
