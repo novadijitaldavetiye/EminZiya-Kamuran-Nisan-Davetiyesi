@@ -108,13 +108,12 @@
 
 .intro-monogram {
   display: block;
-  width: 108px;
-  height: 108px;
-  margin: 0 auto 8px;
-  object-fit: cover;
+  width: 124px;
+  height: 124px;
+  margin: 0 auto 10px;
+  object-fit: contain;
   object-position: center;
-  filter: invert(1) sepia(1);
-  mix-blend-mode: multiply;
+  filter: drop-shadow(0 2px 3px rgba(82, 52, 16, 0.2));
 }
 
 .scene-intro .eyebrow {

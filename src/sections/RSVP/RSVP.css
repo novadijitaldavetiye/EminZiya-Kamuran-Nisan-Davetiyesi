@@ -49,10 +49,12 @@
 .rsvp-eyebrow {
   margin: 0;
 
-  color: #d9bf79;
+  color: #ffe29a;
 
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 700;
   letter-spacing: 7px;
+  text-shadow: 0 2px 6px rgba(20, 15, 9, .86), 0 0 12px rgba(225, 185, 87, .38);
   text-transform: uppercase;
 }
 

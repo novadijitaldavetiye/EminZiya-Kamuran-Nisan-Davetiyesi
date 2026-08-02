@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./Thanks.css";
-import goldRings from "../../assets/images/gold-rings.png";
 
 const bg = (file) => `${import.meta.env.BASE_URL}images/backgrounds/${file}`;
-const snowflakes = Array.from({ length: 22 });
+const image = (file) => `${import.meta.env.BASE_URL}images/${file}`;
+const particles = Array.from({ length: 18 });
 
 export default function Thanks() {
   const sectionRef = useRef(null);
@@ -12,8 +12,9 @@ export default function Thanks() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setRevealed(true),
-      { threshold: 0.45 },
+      { threshold: 0.38 },
     );
+
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
@@ -28,39 +29,45 @@ export default function Thanks() {
       style={{ backgroundImage: `url(${bg("thanks.webp")})` }}
     >
       <div className="thanks-overlay" />
-      <div className="thanks-aurora" aria-hidden="true" />
-      <div className="thanks-reflection" aria-hidden="true" />
+      <div className="thanks-glow" aria-hidden="true" />
 
-      <div className="thanks-snow" aria-hidden="true">
-        {snowflakes.map((_, index) => (
-          <i key={index} style={{ "--snow": index }} />
+      <div className="thanks-particles" aria-hidden="true">
+        {particles.map((_, index) => (
+          <i key={index} style={{ "--particle": index }} />
         ))}
       </div>
 
-      <div className="thanks-content">
-        <div className="thanks-title-group">
-          <img className="thanks-ring-image" src={goldRings} alt="Altın nişan yüzükleri" />
-          <p className="thanks-eyebrow">Sonsuz Sevgiyle</p>
-          <h2 className="thanks-heading">Teşekkürler</h2>
-        </div>
+      <div className="thanks-card">
+        <div className="thanks-card-shine" aria-hidden="true" />
 
-        <div className="thanks-heart-divider" aria-hidden="true">
-          <span /><i>✦</i><span />
+        <img
+          className="thanks-monogram-image"
+          src={image("monogram-ke.png")}
+          alt="Kamuran ve Emin Ziya monogramı"
+        />
+
+        <p className="thanks-eyebrow">Sonsuz Sevgiyle</p>
+        <h2 className="thanks-heading">Teşekkürler</h2>
+
+        <div className="thanks-divider" aria-hidden="true">
+          <span />
+          <i>♥</i>
+          <span />
         </div>
 
         <p className="thanks-text">
           Kalplerimizi bir ömürlük sevgiyle birleştirdiğimiz bu özel yolculukta
-          <br />
-          yanımızda olmanız, bizim için en değerli hediyedir.
-          <br />
-          Güzel dilekleriniz ve sevginiz için gönülden teşekkür ederiz.
+          yanımızda olmanız bizim için en değerli hediyedir.
+          <span>Sevginiz ve güzel dilekleriniz için gönülden teşekkür ederiz.</span>
         </p>
 
         <div className="thanks-signature-row">
           <span aria-hidden="true" />
-          <p className="thanks-signature">Emin Ziya &amp; Kâmuran</p>
+          <p className="thanks-signature">Kamuran &amp; Emin Ziya</p>
           <span aria-hidden="true" />
         </div>
+
+        <p className="thanks-closing">Bu güzel günü birlikte hatırlamak dileğiyle</p>
 
         <button type="button" className="thanks-back-button" onClick={goToStart}>
           <span aria-hidden="true">↑</span>

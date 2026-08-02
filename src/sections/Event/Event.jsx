@@ -51,6 +51,24 @@ export default function Event() {
           Yol Tarifi Al
         </a>
 
+        <div className="event-women-only">
+          <div className="event-women-divider" aria-hidden="true">
+            <span />
+            <i>✿</i>
+            <span />
+          </div>
+
+          <div className="event-women-title">
+            <span aria-hidden="true">❧</span>
+            <strong>KADINLARA ÖZEL</strong>
+            <span aria-hidden="true">❧</span>
+          </div>
+
+          <p>
+            Bu özel günümüzde sadece kadın misafirlerimizle bir arada olmaktan
+            mutluluk duyacağız.
+          </p>
+        </div>
       </div>
 
       <div className="event-next" onClick={goToCountdown}>

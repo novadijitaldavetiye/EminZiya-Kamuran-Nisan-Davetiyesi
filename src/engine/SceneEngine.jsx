@@ -4,7 +4,6 @@ import "./SceneEngine.css";
 import InvitationSection from "../components/InvitationSection/InvitationSection";
 import Hero from "../components/Hero/Hero";
 import Story from "../components/Story/Story";
-import Gallery from "../sections/Gallery/Gallery";
 import Event from "../sections/Event/Event";
 import Countdown from "../sections/Countdown/Countdown";
 import RSVP from "../sections/RSVP/RSVP";
@@ -53,13 +52,6 @@ export default function SceneEngine({ scenes, onOpenInvitation }) {
           );
         }
 
-        if (scene.id === "gallery") {
-          return (
-            <div className="scene-frame" key={scene.id}>
-              <Gallery />
-            </div>
-          );
-        }
 
         if (scene.id === "event") {
           return (

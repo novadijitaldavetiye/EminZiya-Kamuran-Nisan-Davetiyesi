@@ -10,7 +10,7 @@ export const invitationSections = [
     position: "center-lower",
     background: bg("intro.webp"),
     eyebrow: "HİKÂYEMİZİN İLK SAYFASI",
-    title: "Emin Ziya & Kâmuran",
+    title: "Kamuran & Emin Ziya",
     text: "",
     buttonText: "Yolculuğu Başlat",
   },
@@ -42,18 +42,6 @@ export const invitationSections = [
     text: "Zamanla büyüyen, yıldızlar kadar parlak bir sevdaye dönüştü.",
   },
 
-  {
-    id: "gallery",
-    scene: "Memory Scene",
-    layout: "gallery",
-    card: false,
-    overlay: "minimal",
-    position: "center",
-    background: bg("gallery.webp"),
-    eyebrow: "Anılarımız",
-    title: "Galeri",
-    text: "Birlikte biriktirdiğimiz en özel anlardan küçük bir seçki.",
-  },
 
   {
     id: "event",
